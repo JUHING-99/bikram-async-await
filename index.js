@@ -32,11 +32,17 @@ async function printImageAndName() {
     let pokemon = await response.json()
     let url = pokemon.sprites.front_default
     let nombre = pokemon.pokemon.name
-return `<section>
-            <img src= "${url}" alt="${nombre}">
-            <h1>${nombre}</h1>
-        </section>`
+
+    let template = `<section>
+                        <img src= "${url}" alt="${nombre}">
+                        <h1>${nombre}</h1>
+                    </section>`
+
+    document.body.innerHTML += template
+return template
 }
+
+printImageAndName()
 //Recordatorio, la API de perritos era 'https://dog.ceo/dog-api/'
 //4.- Declara una función getRandomDogImage que retorne la url de la imagen de un perro aleatorio
 async function getRandomDogImage() {
@@ -55,17 +61,23 @@ async function getRandomPokemonImage() {
 }
 //6.- Declara una función printPugVsPikachu que pinte la batalla entre "Pug" y "Pikachu" (no se testea)
 async function printPugVsPikachu(){
-let response = await fetch(`https://dog.ceo/api/breed/Pug/images/random`)
+let response = await fetch(`https://dog.ceo/api/breed/pug/images/random`)
     let pug = await response.json()
 let responseDos = await fetch(`https://pokeapi.co/api/v2/pokemon-form/25`)
 let pokemon = await responseDos.json()
 let pikachu = pokemon.sprites.front_default
-return `<section>
-            <img src= "${pug}" alt="${pug}">
-            <h1>VS.</h1>
-            <img src= "${pikachu}" alt="${pikachu}">
-        </section>`
+
+let batalla = `<section>
+                    <img src= "${pug.message}" alt="${pug}">
+                    <h1>VS.</h1>
+                    <img src= "${pikachu}" alt="${pikachu}">
+                </section>`
+document.body.innerHTML += batalla
+
+return batalla
 }
+
+printPugVsPikachu();
 //Usando la api de Rick and Morty https://rickandmortyapi.com/ y sólo async/await:
 //7.- Declara una función getRandomCharacter que retorne un personaje aleatorio.
 async function getRandomCharacter(){
@@ -86,9 +98,19 @@ async function getRandomCharacterInfo(){
     let responseDos = await fetch(`${firstEpisode}`)
     let aparicion = await responseDos.json()
         let dateEpisode = aparicion.air_date
+
+    let personaje =`<section>
+                        <img src= "${img}" alt="${img}">
+                        <h1>${name}</h1>
+                        <h1>${episodes}</h1>
+                        <h1>${firstEpisode}</h1>
+                        <h1>${dateEpisode}</h1>
+                    </section>`
+
+    document.body.innerHTML += personaje
+
+
     return {img, name, episodes, firstEpisode, dateEpisode}
 }
-//9.- Pinta los anteriores datos en el DOM (no se testea)
-//let section = document.createElement("section")
-//section.innerHTML = `<article>${getRandomCharacterInfo()}</article>`
-//document.querySelector("body").appendChild(section)
+//9.- Pinta los anteriores datos en el DOM (no se testea) (l.102 - l. 110)
+
