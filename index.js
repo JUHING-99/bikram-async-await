@@ -95,9 +95,7 @@ async function getRandomCharacterInfo(){
         let name = element.name
         let episodes = element.episode
         let firstEpisode = element.episode[0]
-    let responseDos = await fetch(`${firstEpisode}`)
-    let aparicion = await responseDos.json()
-        let dateEpisode = aparicion.air_date
+        let dateEpisode = firstEpisode.air_date
 
     let personaje =`<section>
                         <img src= "${img}" alt="${img}">
